@@ -1,5 +1,7 @@
 # Easyoauth-Example-Web-App
-Welcome to the Easyoauth example project. Inside this repository you will find documentation on how you can integrate your own front-end web app with your Easyoauth project, as well as a boilerplate React App that demonstrates how you might use the Easyoauth API.
+Welcome to the Easyoauth example project. Inside this repository you will find documentation on how you can integrate your own front-end web app with your Easyoauth project, as well as a [boilerplate React App](#Example-App-Usage) that demonstrates how you might use the Easyoauth API.
+
+[Check out how to get started with the Example App](#Example-App-Usage) or continue reading the Easyoauth API documentation below.
 
 ## API Documentation
 Before diving in, you should have already configured your OAuth app with your chosen provider e.g. Facebook, Slack, Github etc and created a project in Easyoauth that connects it to the provider.
@@ -83,4 +85,30 @@ These parameters must be added to the request body.
     "id": "123"
 }
 ```
+
+## Example App Usage
+Before you run the example app, first make sure that you have created an OAuth app with your OAuth provider
+and that you have created an Easyoauth account and created a project that connects to the OAuth provider.
+
+Clone this repository, ensure you have Node installed on your machine.
+Now create a file named `.env` in the repos root with the following contents:
+
+```sh
+REDIRECT_URI=https://app.easyoauth.com/connect/:project_id/authorize/
+OAUTH_CLIENT_URL=https://app.easyoauth.com/connect/:project_id/get-access-token/
+```
+
+REDIRECT_URI needs to be your Easyoauth projects Authorization endpoint.
+OAUTH_CLIENT_URL needs to be your Easyoauth projects Access Token endpoint.
+
+These endpoints are generated when you create your Easyoauth project.
+
+Now inside the cloned repo run:
+
+```sh
+npm install
+npm start
+```
+
+The example app should now be available in your web browser at `http://localhost:8080`.
 
