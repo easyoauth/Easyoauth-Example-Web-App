@@ -3,7 +3,7 @@ Welcome to the Easyoauth example project. Inside this repository you will find d
 
 ## API Documentation
 Before diving in, you should have already configured your OAuth app with your chosen provider e.g. Facebook, Slack, Github etc and created a project in Easyoauth that connects it to the provider.
-When creating a project, Easyaouth will genertate three unique URL's for you:
+When creating a project, Easyaouth will generate three unique URL's for you:
 
 - An authorization endpoint
 - An access token endpoint

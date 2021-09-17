@@ -23,9 +23,7 @@ const Auth = ({ accessToken, updateAccessToken }) => {
     }
 
     return (
-        <div>
-            Authenticating...
-        </div>
+        <div>Authenticating...</div>
     );
 }
 

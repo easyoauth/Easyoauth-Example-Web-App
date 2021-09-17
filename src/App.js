@@ -9,7 +9,7 @@ const App = () => {
     const [accessToken, updateAccessToken] = useState(null); 
 
     return (
-        <Router className="full-height">
+        <Router>
             <Content path="/" accessToken={accessToken} />
             <Auth path="authenticate" accessToken={accessToken} updateAccessToken={updateAccessToken} />
         </Router>
