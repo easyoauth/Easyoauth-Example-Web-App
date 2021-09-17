@@ -4,12 +4,14 @@ import Content from './Content';
 
 import { Router } from '@reach/router';
 
+import './css/styles.css';
+
 const App = () => {
 
     const [accessToken, updateAccessToken] = useState(null); 
 
     return (
-        <Router>
+        <Router className="full-height">
             <Content path="/" accessToken={accessToken} />
             <Auth path="authenticate" accessToken={accessToken} updateAccessToken={updateAccessToken} />
         </Router>

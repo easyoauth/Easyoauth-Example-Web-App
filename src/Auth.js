@@ -14,8 +14,13 @@ const Auth = ({ accessToken, updateAccessToken }) => {
             body: JSON.stringify({ code }),
         })
         .then(response => response.json())
-        .then(({ access_token }) => updateAccessToken(access_token))
-        .catch((error) => console.error('Error:', error));
+        .then((response) => {
+            if (!response.access_token) {
+                throw Error (response);
+            }
+            updateAccessToken(response.access_token);
+        })
+        .catch((error) => alert(error));
     }, []);
 
     if (accessToken) {
@@ -23,7 +28,12 @@ const Auth = ({ accessToken, updateAccessToken }) => {
     }
 
     return (
-        <div>Authenticating...</div>
+        <div className="content">
+            <div className="content-inner">
+                <p>Trying to retrieve your access token...</p>
+                <a href={process.env.REDIRECT_URI}>Try Again</a>
+            </div>
+        </div>
     );
 }
 
