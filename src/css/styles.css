@@ -22,10 +22,12 @@ body, html {
 
 .content-inner {
     margin: 0 auto;
-    width: 600px;
+    width: 700px;
     text-align: center;
     background-color: #FFFFFF;
     padding: 5em 1.5em;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
 .content-inner h1 {
@@ -35,4 +37,13 @@ body, html {
 
 .login {
     width: 400px;
+}
+
+.profile {
+    text-align: left;
+}
+
+.profile h2 {
+    font-size: 18px;
+    text-align: center;
 }

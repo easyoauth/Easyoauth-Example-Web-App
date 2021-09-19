@@ -98,10 +98,15 @@ REDIRECT_URI=https://app.easyoauth.com/connect/:project_id/authorize/
 OAUTH_CLIENT_URL=https://app.easyoauth.com/connect/:project_id/get-access-token/
 ```
 
-REDIRECT_URI needs to be your Easyoauth projects Authorization endpoint.
-OAUTH_CLIENT_URL needs to be your Easyoauth projects Access Token endpoint.
+- REDIRECT_URI needs to be your Easyoauth projects Authorization endpoint.
+- OAUTH_CLIENT_URL needs to be your Easyoauth projects Access Token endpoint.
 
 These endpoints are generated when you create your Easyoauth project.
+
+You can also add the following optional environment variables that demonstrate the usage of the access token in the example app:
+
+- OAUTH_PROFILE_URL an endpoint exposed by your OAuth provider that retrieves information about the current authenticated user.
+- AUTH_HEADER_PREFIX for example - Bearer or token etc etc, depending on the OAuth provider.
 
 Now inside the cloned repo run:
 

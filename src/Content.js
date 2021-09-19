@@ -1,4 +1,5 @@
 import React from 'react';
+import Profile from './Profile';
 
 const Content = ({ accessToken }) => (
     <div className="content">
@@ -23,6 +24,7 @@ const Content = ({ accessToken }) => (
                             <p>You have successfully logged in using your OAuth provider.</p>
                             <p>Your OAuth access token is: <code>{accessToken}</code></p>
                             <p>Use this access token to authorize requests to the OAuth providers API.</p>
+                            {process.env.OAUTH_PROFILE_URL ? <Profile accessToken={accessToken} /> : null}
                         </div>
                 }
             </>
