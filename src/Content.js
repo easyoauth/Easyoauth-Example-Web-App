@@ -22,7 +22,7 @@ const Content = ({ accessToken }) => (
                         <div className="content-inner">
                             <h1>Congratulations!</h1>
                             <p>You have successfully logged in using your OAuth provider.</p>
-                            <p>Your OAuth access token is: <code>{accessToken}</code></p>
+                            <p>Your OAuth access token is now available in application state.</p>
                             <p>Use this access token to authorize requests to the OAuth providers API.</p>
                             {process.env.OAUTH_PROFILE_URL ? <Profile accessToken={accessToken} /> : null}
                         </div>
