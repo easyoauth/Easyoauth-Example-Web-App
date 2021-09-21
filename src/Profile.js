@@ -5,7 +5,7 @@ const Profile = ({ accessToken }) => {
     const [profile, updateProfile] = useState(null);
     
     useEffect(() => {
-        fetch(process.env.OAUTH_PROFILE_URL, {
+        fetch(process.env.OAUTH_PROFILE_ENDPOINT, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

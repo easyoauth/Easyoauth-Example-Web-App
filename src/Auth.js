@@ -6,7 +6,7 @@ const Auth = ({ accessToken, updateAccessToken }) => {
         const url = new URL(window.location);
         const code = url.searchParams.get('code');
 
-        fetch(process.env.OAUTH_CLIENT_URL, {
+        fetch(process.env.ACCESS_TOKEN_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

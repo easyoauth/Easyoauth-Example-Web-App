@@ -94,18 +94,18 @@ Clone this repository, ensure you have Node installed on your machine.
 Now create a file named `.env` in the repos root with the following contents:
 
 ```sh
-REDIRECT_URI=https://app.easyoauth.com/connect/:project_id/authorize/
-OAUTH_CLIENT_URL=https://app.easyoauth.com/connect/:project_id/get-access-token/
+AUTHORIZATION_ENDPOINT=https://app.easyoauth.com/connect/:project_id/authorize/
+ACCESS_TOKEN_ENDPOINT=https://app.easyoauth.com/connect/:project_id/get-access-token/
 ```
 
-- REDIRECT_URI needs to be your Easyoauth projects Authorization endpoint.
-- OAUTH_CLIENT_URL needs to be your Easyoauth projects Access Token endpoint.
+- AUTHORIZATION_ENDPOINT needs to be your Easyoauth projects Authorization endpoint.
+- ACCESS_TOKEN_ENDPOINT needs to be your Easyoauth projects Access Token endpoint.
 
 These endpoints are generated when you create your Easyoauth project.
 
 You can also add the following optional environment variables that demonstrate the usage of the access token in the example app:
 
-- OAUTH_PROFILE_URL an endpoint exposed by your OAuth provider that retrieves information about the current authenticated user.
+- OAUTH_PROFILE_ENDPOINT an endpoint exposed by your OAuth provider that retrieves information about the current authenticated user.
 - AUTH_HEADER_PREFIX for example - Bearer or token etc etc, depending on the OAuth provider.
 
 Now inside the cloned repo run:
