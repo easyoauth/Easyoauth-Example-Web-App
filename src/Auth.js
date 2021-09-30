@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { navigate } from '@reach/router';
 
-const Auth = ({ accessToken, updateAccessToken }) => {
+const Auth = ({ connectionCredentials, updateConnectionCredentials }) => {
     useEffect(() => {
         const url = new URL(window.location);
         const code = url.searchParams.get('code');
@@ -15,15 +15,15 @@ const Auth = ({ accessToken, updateAccessToken }) => {
         })
         .then(response => response.json())
         .then((response) => {
-            if (!response.access_token) {
+            if (!response.access_key) {
                 throw Error (response);
             }
-            updateAccessToken(response.access_token);
+            updateConnectionCredentials(response);
         })
         .catch((error) => alert(error));
     }, []);
 
-    if (accessToken) {
+    if (connectionCredentials) {
         navigate ('/');
     }
 

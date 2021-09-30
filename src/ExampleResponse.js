@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import ReactJson from 'react-json-view';
 
-const Profile = ({ accessToken }) => {
+const ExampleResponse = ({ access_key, refresh_key, id }) => {
 
     const [profile, updateProfile] = useState(null);
     
     useEffect(() => {
-        fetch(process.env.OAUTH_PROFILE_ENDPOINT, {
-            method: 'GET',
+        fetch(process.env.REQUEST_PROXY_ENDPOINT, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `${process.env.AUTH_HEADER_PREFIX || ''} ${accessToken}`
             },
+            body: JSON.stringify({
+                access_key,
+                refresh_key,
+                id,
+                url: process.env.OAUTH_TEST_ENDPOINT,
+                method: 'get'
+            }),
         })
         .then(response => response.json())
         .then((response) => updateProfile(response))
@@ -22,8 +29,8 @@ const Profile = ({ accessToken }) => {
             {
                 profile ? (
                     <div className="profile">
-                        <h2>OAuth Provider Profile</h2>
-                        <ul>{Object.keys(profile).filter((key) => typeof profile[key] !== 'object').map((key) => <li key={key}><strong>{key}: </strong>{profile[key]}</li>)}</ul>
+                        <h2>OAuth Example Response</h2>
+                        <ReactJson src={profile} />
                     </div>
                 ) : 'Loading profile...'
             }
@@ -32,4 +39,4 @@ const Profile = ({ accessToken }) => {
 
 };
 
-export default Profile;
+export default ExampleResponse;

@@ -8,12 +8,12 @@ import './css/styles.css';
 
 const App = () => {
 
-    const [accessToken, updateAccessToken] = useState(null); 
+    const [connectionCredentials, updateConnectionCredentials] = useState(null); 
 
     return (
         <Router className="full-height">
-            <Content path="/" accessToken={accessToken} />
-            <Auth path="authenticate" accessToken={accessToken} updateAccessToken={updateAccessToken} />
+            <Content path="/" {...connectionCredentials} />
+            <Auth path="authenticate" connectionCredentials={connectionCredentials} updateConnectionCredentials={updateConnectionCredentials} />
         </Router>
     );
 }
