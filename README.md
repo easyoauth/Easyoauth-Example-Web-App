@@ -1,6 +1,8 @@
 # Easyoauth-Example-Web-App
 Welcome to the Easyoauth example project. Inside this repository you will find documentation on how you can integrate your own front-end web app with your Easyoauth project, as well as a [boilerplate React App](#Example-App-Usage) that demonstrates how you might use the Easyoauth API.
 
+Before you get started, sign in to Easyoauth at [easyoauth.com](https://easyoauth.com).
+
 [Check out how to get started with the Example App](#Example-App-Usage) or continue reading the Easyoauth API documentation below.
 
 ## API Documentation
@@ -9,7 +11,7 @@ When creating a project, Easyaouth will generate three unique URL's for you:
 
 - An authorization endpoint
 - An access token endpoint
-- An access token refresh endpoint
+- A request proxy endpoint
 
 These endpoints need to be utilized in the order displayed. The following steps describe the OAuth dance
 and how these endpoints fit unto it.
@@ -78,7 +80,7 @@ https://app.easyoauth.com/connect/:project_id/proxy-request/
 Your web app must make a POST request to this endpoint.
 
 #### Parameters
-```json
+```javascript
 {
     "access_key": "ABC123", // Your web app should have kept this (required)
     "id": "123", // Your web app should have kept this (required)

@@ -31,7 +31,7 @@ const Auth = ({ connectionCredentials, updateConnectionCredentials }) => {
         <div className="content">
             <div className="content-inner">
                 <p>Trying to retrieve your access token...</p>
-                <a href={process.env.REDIRECT_URI}>Try Again</a>
+                <a href={process.env.OAUTH_TEST_ENDPOINT}>Try Again</a>
             </div>
         </div>
     );
