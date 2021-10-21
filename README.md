@@ -7,7 +7,7 @@ Before you get started, sign in to Easyoauth at [easyoauth.com](https://easyoaut
 
 ## API Documentation
 Before diving in, you should have already configured your OAuth app with your chosen provider e.g. Facebook, Slack, Github etc and created a project in Easyoauth that connects it to the provider.
-When creating a project, Easyaouth will generate three unique URL's for you:
+When creating a project, Easyoauth will generate three unique URL's for you:
 
 - An authorization endpoint
 - An access token endpoint
@@ -86,7 +86,7 @@ Your web app must make a POST request to this endpoint.
     "id": "123", // Your web app should have kept this (required)
     "url": "https://example.com/some/endpoint", // The API endpoint to proxy to (required)
     "method": "get", // e.g. get, post, put, patch or delete (required)
-    "payload": { "foo": "bar" }, // If you have data to send in your request (optional)
+    "payload": `{ "foo": "Easyoauth bar" }`, // If you have data to send in your request (optional)
     "refresh_key": "ABC123", // Your web app should have kept this if the OAuth provider supports refresh tokens (optional)
     "auth_header_prefix": "token" // Will default to Bearer if not supplied (optional)
 }
