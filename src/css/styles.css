@@ -39,11 +39,11 @@ body, html {
     width: 400px;
 }
 
-.profile {
+.example {
     text-align: left;
 }
 
-.profile h2 {
+.example h2 {
     font-size: 18px;
     text-align: center;
 }

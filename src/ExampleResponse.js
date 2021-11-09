@@ -1,38 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import ReactJson from 'react-json-view';
 
-const ExampleResponse = ({ access_key, refresh_key, id }) => {
+const ExampleResponse = ({ token }) => {
 
-    const [profile, updateProfile] = useState(null);
+    const [exampleData, updateExampleData] = useState(null);
     
     useEffect(() => {
         fetch(process.env.REQUEST_PROXY_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': token
             },
             body: JSON.stringify({
-                access_key,
-                refresh_key,
-                id,
                 url: process.env.OAUTH_TEST_ENDPOINT,
                 method: 'get'
             }),
         })
         .then(response => response.json())
-        .then((response) => updateProfile(response))
+        .then((response) => updateExampleData(response))
         .catch((error) => alert(error));
     }, []);
 
     return (
         <>
             {
-                profile ? (
-                    <div className="profile">
+                exampleData ? (
+                    <div className="example">
                         <h2>OAuth Example Response</h2>
-                        <ReactJson src={profile} />
+                        <ReactJson src={exampleData} />
                     </div>
-                ) : 'Loading profile...'
+                ) : 'Loading example data...'
             }
         </>
     )
