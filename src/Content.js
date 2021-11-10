@@ -1,7 +1,7 @@
 import React from 'react';
 import ExampleResponse from './ExampleResponse';
 
-const Content = ({ access_key, refresh_key, id }) => (
+const Content = ({ token }) => (
     <div className="content">
         {
             !process.env.AUTHORIZATION_ENDPOINT ? (
@@ -13,7 +13,7 @@ const Content = ({ access_key, refresh_key, id }) => (
             ) : 
             <>
                 {
-                    !access_key ?
+                    !token ?
                         <div className="content-inner login">
                             <h1>Easyoauth Example App</h1>
                             <p>A simple React SPA that connects to an Easyoauth project</p>
@@ -24,7 +24,7 @@ const Content = ({ access_key, refresh_key, id }) => (
                             <p>You have successfully logged in using your OAuth provider.</p>
                             <p>Your authorization keys are now available in application state.</p>
                             <p>Use these keys to authorize requests to the OAuth providers API via Easyoauths proxy request endpoint.</p>
-                            {process.env.OAUTH_TEST_ENDPOINT ? <ExampleResponse access_key={access_key} refresh_key={refresh_key} id={id} /> : null}
+                            {process.env.OAUTH_TEST_ENDPOINT ? <ExampleResponse token={token} /> : null}
                         </div>
                 }
             </>

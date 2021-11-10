@@ -9,21 +9,21 @@ Before you get started, sign in to Easyoauth at [easyoauth.com](https://easyoaut
 Before diving in, you should have already configured your OAuth app with your chosen provider e.g. Facebook, Slack, Github etc and created a project in Easyoauth that connects it to the provider.
 When creating a project, Easyoauth will generate three unique URL's for you:
 
-- An authorization endpoint
-- An access token endpoint
+- A login endpoint
+- An authorizationn endpoint
 - A request proxy endpoint
 
 These endpoints need to be utilized in the order displayed. The following steps describe the OAuth dance
-and how these endpoints fit unto it.
+and how these endpoints fit into it.
 
-1. The Authorization endpoint is used to trigger the browser to redirect to the OAuth providers login page.
+1. The Login Endpoint is used to trigger the browser to redirect to the OAuth providers login page.
 2. Credentials are entered into the form by the user and submitted.
 3. The Oauth provider redirects the browser back to your specified redirect URI (your web app) with a short-lived authorization code in the URL.
-4. Your web app must extract the short-lived code and send it in a request to the Access Token Endpoint.
+4. Your web app must extract the short-lived code and send it in a request to the Authorization Endpoint.
 5. Easyoauth exchanges the short-lived code for an access token. The connection is now established.
-6. Easyoauth provides your web app with keys (not the actual access or refresh tokens, these are never exposed) that allow your web app to make secure requests to the API using the Request Proxy Endpoint.
+6. Easyoauth provides your web app with a secure token that allow your web app to make secure requests to your OAuth providers API using the Request Proxy Endpoint.
 
-### Authorization endpoint
+### Login endpoint
 This endpoint is used to trigger Easyoauth to redirect your web app to the OAuth providers login page.
 The URL should be anchored to an HTML link element, like as follows:
 
@@ -33,7 +33,7 @@ The URL should be anchored to an HTML link element, like as follows:
 
 You would typically embed this link element in your web app's login page.
 
-### Access Token Endpoint
+### Authorization Endpoint
 This endpoint will tell Easyoauth to retrieve an access token from your configured OAuth provider.
 
 ```
@@ -54,40 +54,26 @@ This is the short-lived authorization code that the OAuth provider should includ
 #### Response
 ```json
 {
-    "access_key": "ABC123",
-    "refresh_key": "ABC123",
-    "id": "123"
+    "easyoauth_token": "ABC123",
 }
 ```
 
-##### access_key
-This is returned if your OAuth provider successfully returns an access token and must be sent in subsequent requests that are proxied via Easyoauth through to your OAuth providers API. Your web app should remember this value for authenticating proxied requests to your OAuth providers API.
-
-##### refresh_key
-This is returned if your OAuth provider supports refresh tokens and can be optionally sent in subsequent requests that are proxied via Easyoauth through to your OAuth providers API. Your web app should remember this value for refreshing your access token.
-
-##### id
-This is returned if your OAuth provider successfully returns an access token and must be sent in subsequent requests that are proxied via Easyoauth through to your OAuth providers API. Your web app should remember this value for authenticating proxied requests to your OAuth providers API.
-
 ### Request Proxy Endpoint
 This endpoint allows you to proxy requests through to your OAuth providers API via Easyoauth as so to avoid CORS errors.
-Your app will have needed to already used the Access Token Endpoint in order to have retrieved some of the required parameters.
 
 ```
 https://app.easyoauth.com/connect/:project_id/proxy-request/
 ```
 
 Your web app must make a POST request to this endpoint.
+The easyoauth_token retrieved in the previous step must also be added as an authorization header.
 
 #### Parameters
 ```javascript
 {
-    "access_key": "ABC123", // Your web app should have kept this (required)
-    "id": "123", // Your web app should have kept this (required)
     "url": "https://example.com/some/endpoint", // The API endpoint to proxy to (required)
     "method": "get", // e.g. get, post, put, patch or delete (required)
     "payload": `{ "foo": "Easyoauth bar" }`, // If you have data to send in your request (optional)
-    "refresh_key": "ABC123", // Your web app should have kept this if the OAuth provider supports refresh tokens (optional)
     "auth_header_prefix": "token" // Will default to Bearer if not supplied (optional)
 }
 ```
@@ -105,13 +91,13 @@ Clone this repository, ensure you have Node installed on your machine.
 Now create a file named `.env` in the repos root with the following contents:
 
 ```sh
+LOGIN_ENDPOINT=https://app.easyoauth.com/connect/:project_id/login/
 AUTHORIZATION_ENDPOINT=https://app.easyoauth.com/connect/:project_id/authorize/
-ACCESS_TOKEN_ENDPOINT=https://app.easyoauth.com/connect/:project_id/get-access-token/
 REQUEST_PROXY_ENDPOINT=https://app.easyoauth.com/connect/:project_id/proxy-request/
 ```
 
+- LOGIN_ENDPOINT needs to be your Easyoauth projects Login endpoint.
 - AUTHORIZATION_ENDPOINT needs to be your Easyoauth projects Authorization endpoint.
-- ACCESS_TOKEN_ENDPOINT needs to be your Easyoauth projects Access Token endpoint.
 - REQUEST_PROXY_ENDPOINT needs to be your Easyoauth projects Proxy Request endpoint.
 
 These endpoints are generated when you create your Easyoauth project.

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactJson from 'react-json-view';
 
-const ExampleResponse = ({ access_key, refresh_key, id }) => {
+const ExampleResponse = ({ token }) => {
 
     const [profile, updateProfile] = useState(null);
     
@@ -10,11 +10,9 @@ const ExampleResponse = ({ access_key, refresh_key, id }) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'authorization': token
             },
             body: JSON.stringify({
-                access_key,
-                refresh_key,
-                id,
                 url: process.env.OAUTH_TEST_ENDPOINT,
                 method: 'get'
             }),

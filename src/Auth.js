@@ -15,10 +15,10 @@ const Auth = ({ connectionCredentials, updateConnectionCredentials }) => {
         })
         .then(response => response.json())
         .then((response) => {
-            if (!response.access_key) {
+            if (!response.easyoauth_token) {
                 throw Error (response);
             }
-            updateConnectionCredentials(response);
+            updateConnectionCredentials(response.easyoauth_token);
         })
         .catch((error) => alert(error));
     }, []);

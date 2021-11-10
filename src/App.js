@@ -12,7 +12,7 @@ const App = () => {
 
     return (
         <Router className="full-height">
-            <Content path="/" {...connectionCredentials} />
+            <Content path="/" token={connectionCredentials} />
             <Auth path="authenticate" connectionCredentials={connectionCredentials} updateConnectionCredentials={updateConnectionCredentials} />
         </Router>
     );
