@@ -27,7 +27,7 @@ This endpoint is used to trigger Easyoauth to redirect your web app to the OAuth
 The URL should be anchored to an HTML link element, like as follows:
 
 ```
-<a href="https://app.easyoauth.com/connect/:project_id/authorize">Login</a>
+<a href="https://app.easyoauth.com/connect/:project_id/login">Login</a>
 ```
 
 You would typically embed this link element in your web app's login page.
@@ -36,7 +36,7 @@ You would typically embed this link element in your web app's login page.
 This endpoint will tell Easyoauth to retrieve an access token from your configured OAuth provider.
 
 ```
-https://app.easyoauth.com/connect/:project_id/get-access-token/
+https://app.easyoauth.com/connect/:project_id/authorize/
 ```
 
 Your web app must make a POST request to this endpoint. This would need to be executed from your web app's page that
@@ -53,7 +53,7 @@ This is the short-lived authorization code that the OAuth provider should includ
 #### Response
 ```json
 {
-    "easyoauth_token": "ABC123",
+    "easyoauth_token": "123ABC",
 }
 ```
 
