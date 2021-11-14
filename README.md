@@ -69,7 +69,7 @@ The easyoauth_token retrieved in the previous step must also be added as an auth
 
 #### Request Headers
 ```sh
-"authorization": "your token"
+"authorization": "your easyoauth token"
 ```
 
 #### Parameters
