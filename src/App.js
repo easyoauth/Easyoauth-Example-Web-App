@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
-import Auth from './Auth';
-import Content from './Content';
-
-import { Router } from '@reach/router';
+import React from 'react';
+import Login from './components/Login';
+import Content from './components/Content';
+import Loader from './components/Loader';
+import ErrorMessage from './components/ErrorMessage';
+import useEasyoauth from './useEasyoauth';
 
 import './css/styles.css';
 
 const App = () => {
 
-    const [connectionCredentials, updateConnectionCredentials] = useState(null); 
+    const {
+        easyoauthToken,
+        error,
+        isLoading
+    } = useEasyoauth();
 
-    return (
-        <Router className="full-height">
-            <Content path="/" token={connectionCredentials} />
-            <Auth path="authenticate" connectionCredentials={connectionCredentials} updateConnectionCredentials={updateConnectionCredentials} />
-        </Router>
-    );
+    if (error) {
+        return <ErrorMessage message={error} />
+    }
+
+    if (isLoading) {
+        return <Loader />
+    }
+
+    if (easyoauthToken) {
+        return <Content easyoauthToken={easyoauthToken} />
+    }
+
+    return <Login />
 }
 
 export default App;

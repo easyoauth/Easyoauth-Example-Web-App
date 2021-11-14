@@ -10,11 +10,10 @@ Before diving in, you should have already configured your OAuth app with your ch
 When creating a project, Easyoauth will generate three unique URL's for you:
 
 - A login endpoint
-- An authorizationn endpoint
+- An authorization endpoint
 - A request proxy endpoint
 
-These endpoints need to be utilized in the order displayed. The following steps describe the OAuth dance
-and how these endpoints fit into it.
+The following steps describe the OAuth dance and how these endpoints fit into it.
 
 1. The Login Endpoint is used to trigger the browser to redirect to the OAuth providers login page.
 2. Credentials are entered into the form by the user and submitted.

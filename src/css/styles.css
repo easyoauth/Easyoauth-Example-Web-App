@@ -7,7 +7,7 @@ body, html {
     margin: 0;
     overflow: hidden;
     background-color: #efeded;
-    font-family:Arial, Helvetica, sans-serif; 
+    font-family: Arial, Helvetica, sans-serif; 
 }
 
 .full-height {
@@ -39,11 +39,11 @@ body, html {
     width: 400px;
 }
 
-.profile {
+.example-response {
     text-align: left;
 }
 
-.profile h2 {
+.example-response h2 {
     font-size: 18px;
     text-align: center;
 }
