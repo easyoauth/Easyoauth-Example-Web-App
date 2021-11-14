@@ -67,6 +67,10 @@ https://app.easyoauth.com/connect/:project_id/proxy-request/
 Your web app must make a POST request to this endpoint.
 The easyoauth_token retrieved in the previous step must also be added as an authorization header.
 
+```sh
+"authorization": "your token"
+```
+
 #### Parameters
 ```javascript
 {
